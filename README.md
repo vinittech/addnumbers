@@ -13,7 +13,7 @@ To install this package, use the following command,
 
 After then, install the required package using the following command,
 
-```bash
+```
 pip install -e .
 ```
 
