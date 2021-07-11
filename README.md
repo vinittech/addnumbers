@@ -1,8 +1,6 @@
 # addnumbers
 Adding Two Numbers using a Recurrent Network
 
-# Requirement
-please see `requirements.txt`
 
 # Installation
 1) Clone the repository
