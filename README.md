@@ -5,12 +5,12 @@ Adding Two Numbers using a Recurrent Network
 # Installation
 1) Clone the repository
 
-2) To install this as a package, use the following command,
+2) To install as a package, use the following command,
 ```bash
 python3 setup.py develop
 ```
 
-3) After that, install the required dependencies using the following command,
+3) Then, install the required dependencies using the following command,
 
 ```bash
 pip3 install -r requirements.txt
