@@ -45,7 +45,6 @@ dropout = args.dropout
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = TCN(input_channels, num_classes, channel_sizes, kernel_size=kernel_size, dropout=dropout).to(device)
 model.load_state_dict(torch.load(args.checkpoint, map_location=lambda storage, loc: storage))
-criterion = nn.MSELoss()
 
 TEST_SAMPLES = 40
 input, target = CustomDataset.generate_data(TEST_SAMPLES, args.seq_len)
