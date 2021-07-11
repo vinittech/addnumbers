@@ -7,12 +7,12 @@ please see `requirements.txt`
 # Installation
 1) Clone the repository
 
-2) To install this package, use the following command,
+2) To install this as a package, use the following command,
 ```bash
 pip install -e .
 ```
 
-3) After then, install the required package using the following command,
+3) After then, install the required dependencies using the following command,
 
 ```bash
 pip install -r requirements.txt
