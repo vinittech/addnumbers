@@ -20,16 +20,14 @@ parser.add_argument('--cuda', action='store_false',
                     help='use CUDA (default: True)')
 parser.add_argument('--dropout', type=float, default=0.0,
                     help='dropout applied to layers (default: 0.0)')
-parser.add_argument('--clip', type=float, default=-1,
-                    help='gradient clip, -1 means no clip (default: -1)')
-parser.add_argument('--epochs', type=int, default=200,
+parser.add_argument('--epochs', type=int, default=100,
                     help='upper epoch limit (default: 10)')
 parser.add_argument('--ksize', type=int, default=7,
                     help='kernel size (default: 7)')
 parser.add_argument('--levels', type=int, default=8,
                     help='# of levels (default: 8)')
-parser.add_argument('--seq_len', type=int, default=150,
-                    help='sequence length (default: 150)')
+parser.add_argument('--seq_len', type=int, default=350,
+                    help='sequence length (default: )')
 parser.add_argument('--lr', type=float, default=4e-3,
                     help='initial learning rate (default: 4e-3)')
 parser.add_argument('--optim', type=str, default='Adam',
@@ -38,9 +36,9 @@ parser.add_argument('--hidden_layers', type=int, default=30,
                     help='number of hidden units per layer (default: 30)')
 parser.add_argument('--seed', type=int, default=1111,
                     help='random seed (default: 1111)')
-parser.add_argument('--saveCheckpoint', type=str, default='checkpoint/',
+parser.add_argument('--saveCheckpoint', type=str, default='../checkpoint/350/',
                     help='Directory to store checkpoint')
-parser.add_argument('--snapshots', type=int, default=100,
+parser.add_argument('--snapshots', type=int, default=20,
                     help='Snapshot Frequency of the checkpoint')
 
 
@@ -128,7 +126,7 @@ def checkpoint(epoch):
         torch.save(model.state_dict(), model_out_path)
         print("Checkpoint saved to {}".format(model_out_path))
 
-for epoch in range(1,args.epochs):
+for epoch in range(0, args.epochs):
     train(epoch)
     eval(epoch)
     checkpoint(epoch)
@@ -136,11 +134,11 @@ for epoch in range(1,args.epochs):
 plt.plot(range(args.epochs),train_loss)
 plt.xlabel('Epochs')
 plt.ylabel('Training Loss')
-plt.savefig('results/train_acc.png')
+plt.savefig('../results/train_loss_350.png')
 plt.clf()
 
 plt.plot(range(args.epochs),validation_loss)
 plt.xlabel('Epochs')
 plt.ylabel('Validation Loss')
-plt.savefig('results/val_acc.png')
+plt.savefig('../results/val_loss_350.png')
 

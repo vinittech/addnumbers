@@ -11,18 +11,18 @@ class CustomDataset(Dataset):
     def __getitem__(self, index: int) -> torch.Tensor:
         x = self.input[index]
         y = self.target[index]
-
-        x = np.transpose(x, (1, 0))
         x = torch.from_numpy(np.array(x)).to(torch.float32)
         y = torch.from_numpy(np.array(y)).to(torch.float32)
 
         return x, y
 
+
     def __len__(self) -> int:
         return len(self.input)
 
-    def generate_data(self, n: int, seq_length: int) -> np.array:
 
+    @staticmethod
+    def generate_data(n: int, seq_length: int) -> np.array:
         x_num = np.random.uniform(0, 1, (n, 1, seq_length))
         x_mask = np.zeros([n, 1, seq_length])
         y = np.zeros([n, 1])
@@ -32,6 +32,5 @@ class CustomDataset(Dataset):
             x_mask[i, 0, positions[1]] = 1
             y[i, 0] = x_num[i, 0, positions[0]] + x_num[i, 0, positions[1]]
         x = np.concatenate((x_num, x_mask), axis=1)
-        x = np.transpose(x, (0, 2, 1))
 
         return x, y
