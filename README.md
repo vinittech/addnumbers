@@ -7,13 +7,13 @@ Adding Two Numbers using a Recurrent Network
 
 2) To install this as a package, use the following command,
 ```bash
-python setup.py develop
+python3 setup.py develop
 ```
 
 3) After that, install the required dependencies using the following command,
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 # Training & Testing
 Training & Testing scripts are provided in the `scripts/` directory.
