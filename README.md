@@ -10,7 +10,7 @@ Adding Two Numbers using a Recurrent Network
 pip install -e .
 ```
 
-3) After then, install the required dependencies using the following command,
+3) After that, install the required dependencies using the following command,
 
 ```bash
 pip install -r requirements.txt
