@@ -7,7 +7,6 @@ class CustomDataset(Dataset):
     def __init__(self, n: int, length: int):
         self.input, self.target = self.generate_data(n ,length)
 
-
     def __getitem__(self, index: int) -> torch.Tensor:
         x = self.input[index]
         y = self.target[index]
@@ -16,10 +15,8 @@ class CustomDataset(Dataset):
 
         return x, y
 
-
     def __len__(self) -> int:
         return len(self.input)
-
 
     @staticmethod
     def generate_data(n: int, seq_length: int) -> np.array:
