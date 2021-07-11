@@ -1,14 +1,11 @@
-import os
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import torch.nn.functional as F
 from torch.utils.data import DataLoader
 import argparse
 import time
 import matplotlib.pyplot as plt
-
 
 from addnumbers.dataset import CustomDataset
 from addnumbers.model.rnn import TCN
@@ -26,7 +23,7 @@ parser.add_argument('--ksize', type=int, default=7,
                     help='kernel size (default: 7)')
 parser.add_argument('--levels', type=int, default=8,
                     help='# of levels (default: 8)')
-parser.add_argument('--seq_len', type=int, default=350,
+parser.add_argument('--seq_len', type=int, default=450,
                     help='sequence length (default: )')
 parser.add_argument('--lr', type=float, default=4e-3,
                     help='initial learning rate (default: 4e-3)')
@@ -36,21 +33,20 @@ parser.add_argument('--hidden_layers', type=int, default=30,
                     help='number of hidden units per layer (default: 30)')
 parser.add_argument('--seed', type=int, default=1111,
                     help='random seed (default: 1111)')
-parser.add_argument('--saveCheckpoint', type=str, default='../checkpoint/350/',
+parser.add_argument('--saveCheckpoint', type=str, default='../checkpoint/450/',
                     help='Directory to store checkpoint')
 parser.add_argument('--snapshots', type=int, default=20,
                     help='Snapshot Frequency of the checkpoint')
 
+TRAIN_SAMPLES = 50000
+VALIDATION_SAMPLES = 1000
 
 args = parser.parse_args()
-
 torch.manual_seed(args.seed)
+
 if torch.cuda.is_available():
     if not args.cuda:
         print("WARNING: You have a CUDA device, so you should probably run with --cuda")
-
-TRAIN_SAMPLES = 50000
-VALIDATION_SAMPLES = 1000
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 input_channels = 2
@@ -92,15 +88,11 @@ def train(epoch):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-
         epoch_loss += loss.item()
-
-        _, prediction = torch.max(prediction.data, 1)
 
         print("===> Epoch[{}]({}/{}): Loss: {:.4f} || Timer: {:.4f} sec.".format(epoch, iteration,
                                                                                  len(train_loader), epoch_loss,
                                                                                  (t1 - t0)))
-
     train_loss.append(epoch_loss)
     print("===> Epoch {} Complete: Avg. Loss: {:.4f}".format(epoch, epoch_loss / len(train_set)))
 
@@ -114,7 +106,6 @@ def eval(epoch):
 
             prediction = model(input)
             loss = criterion(prediction, labels)
-
             val_loss += loss.item()
 
         validation_loss.append(val_loss)
@@ -134,11 +125,11 @@ for epoch in range(0, args.epochs):
 plt.plot(range(args.epochs),train_loss)
 plt.xlabel('Epochs')
 plt.ylabel('Training Loss')
-plt.savefig('../results/train_loss_350.png')
+plt.savefig('../results/train_loss_450.png')
 plt.clf()
 
 plt.plot(range(args.epochs),validation_loss)
 plt.xlabel('Epochs')
 plt.ylabel('Validation Loss')
-plt.savefig('../results/val_loss_350.png')
+plt.savefig('../results/val_loss_450.png')
 
