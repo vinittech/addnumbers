@@ -12,6 +12,11 @@ To install this package, use the following command,
 ```
 pip install -e .
 ```
+# Training & Testing
+Training & Testing scripts are provided in the `scripts/` directory.
+
+# Results
+Training logs are provided in the `logs/` directory.
 
 # Author
 
