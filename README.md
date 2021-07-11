@@ -7,7 +7,7 @@ Adding Two Numbers using a Recurrent Network
 
 2) To install this as a package, use the following command,
 ```bash
-pip install -e .
+python setup.py develop
 ```
 
 3) After that, install the required dependencies using the following command,
