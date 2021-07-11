@@ -5,12 +5,17 @@ Adding Two Numbers using a Recurrent Network
 please see `requirements.txt`
 
 # Installation
-It is recommended to build the environment under venv.
+1) Clone the repository
 
-To install this package, use the following command,
-
-```
+2) To install this package, use the following command,
+```bash
 pip install -e .
+```
+
+3) After then, install the required package using the following command,
+
+```bash
+pip install -r requirements.txt
 ```
 # Training & Testing
 Training & Testing scripts are provided in the `scripts/` directory.
