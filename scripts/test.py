@@ -7,8 +7,6 @@ from addnumbers.dataset import CustomDataset
 from addnumbers.model.rnn import TCN
 
 parser = argparse.ArgumentParser(description='Sequence Modeling - The Adding Problem')
-parser.add_argument('--batch_size', type=int, default=2048, metavar='N',
-                    help='batch size (default: 32)')
 parser.add_argument('--cuda', action='store_false',
                     help='use CUDA (default: True)')
 parser.add_argument('--dropout', type=float, default=0.0,
@@ -18,7 +16,7 @@ parser.add_argument('--ksize', type=int, default=7,
 parser.add_argument('--levels', type=int, default=8,
                     help='# of levels (default: 8)')
 parser.add_argument('--seq_len', type=int, default=450,
-                    help='sequence length (default: 150)')
+                    help='sequence length (default: 450)')
 parser.add_argument('--hidden_layers', type=int, default=30,
                     help='number of hidden units per layer (default: 30)')
 parser.add_argument('--seed', type=int, default=1111,
